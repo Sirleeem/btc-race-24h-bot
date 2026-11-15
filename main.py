@@ -173,9 +173,10 @@ def main():
                         }
                     )
                     cooldown_until = n + COOLDOWN_BARS
-                    mode = None
-                    peak = None
-                    pending_mode = None
+                    # mode and peak stay set on purpose: if this sell is
+                    # rejected (a gap past max slippage), the next batch
+                    # retries with the same exit rules. Once the sell
+                    # fills, the flat branch clears them.
         out.write(
             json.dumps(
                 {"type": "reply", "seq": seq, "orders": orders},
